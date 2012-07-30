@@ -2,12 +2,10 @@ import metar
 import matplotlib.dates as mdates
 import datetime as dt
 
-stations = [('KDLS', 'The Dalles', 'OR'),
-            ('KHRI', 'Hermiston', 'OR'),
-            ('KPSC', 'Pasco', 'WA')]
+stations = [('KAWO', 'Arlington', 'WA')]
 
-startdate = dt.datetime(1980,1,1)
-enddate = dt.datetime(2012,5,27)
+startdate = dt.datetime(1997,1,1)
+enddate = dt.datetime(2012,7,20)
 timestep = dt.timedelta(days=1)
 for station in stations:
     outfilename = '%s_raw.csv' % (station[0],)
