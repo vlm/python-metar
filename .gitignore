@@ -54,3 +54,5 @@ tex/*.tex
 *.aux
 *.out
 *.toc
+
+build
