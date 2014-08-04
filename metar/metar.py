@@ -4,7 +4,7 @@ import re
 import sys
 import datetime
 import string
-from .datatypes import *
+from datatypes import *
 
 #!/usr/bin/env python
 #
@@ -419,6 +419,7 @@ class Metar(object):
         self.wind_dir_peak = None          # direction of peak wind speed in last hour
         self.peak_wind_time = None         # time of peak wind observation [datetime]
         self.wind_shift_time = None        # time of wind shift [datetime]
+        self.wind_shift_fropa = False      # FROPA is present.
         self.max_temp_6hr = None           # max temp in last 6 hours
         self.min_temp_6hr = None           # min temp in last 6 hours
         self.max_temp_24hr = None          # max temp in last 24 hours
@@ -1009,9 +1010,10 @@ class Metar(object):
                 self.wind_shift_time -= datetime.timedelta(hours=24)
             else:
                 self.wind_shift_time -= datetime.timedelta(hours=1)
+        self.wind_shift_fropa = (d['front'] is not None)
 
         text = "wind shift at %d:%02d" %  (wshft_hour, wshft_min)
-        if d['front']:
+        if self.wind_shift_fropa:
             text += " (front)"
 
         self._remarks.append(text)
@@ -1399,7 +1401,7 @@ class Metar(object):
                     text_list.append("%s%s at %s" %
                           (SKY_COVER[cover],what,str(height)))
 
-        return sep.join(self.text_list)
+        return sep.join(text_list)
 
     def trend(self):
         """
