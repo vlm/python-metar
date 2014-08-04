@@ -528,7 +528,7 @@ class Metar(object):
             elif allexceptions:
                 raise ParserError("Unparsed groups in body: "+code)
             else:
-                print(msg)
+                sys.stderr.write(str(msg))
 
     def _do_trend_handlers(self, code):
         for pattern, handler, repeatable in Metar.trend_handlers:
