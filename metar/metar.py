@@ -131,8 +131,8 @@ SKY_RE= re.compile(r"""^(?P<cover>VV|CLR|SKC|SCK|NSC|NCD|BKN|SCT|FEW|[O0]VC|///)
                         (?P<cloud>([A-Z][A-Z]+|///))?\s+""",
                         re.VERBOSE)
 
-TEMP_RE = re.compile(r"""^(?P<temp>(M|-)?\d+|//|XX|MM)/
-                          (?P<dewpt>(M|-)?\d+|//|XX|MM)?\s+""",
+TEMP_RE = re.compile(r"""^(?P<temp>(M|-)?\d{2}|//|XX|MM)/
+                          (?P<dewpt>(M|-)?\d{2}|//|XX|MM)\s+""",
                           re.VERBOSE)
 
 PRESS_RE = re.compile(r"""^(?P<unit>A|Q|QNH|SLP)?
